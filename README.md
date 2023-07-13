@@ -27,4 +27,4 @@ The command interpreter also implements persistance storage to a database.
 ## Examples
 
 
-'$ echo "help" | ./console.py\n\n(hbnb)\n\nDocumented commands (type help <topic>):\n========================================\n\nEOF  help  quit\n\n(hbnb)
+'$ echo "help" | ./console.py\n\n(hbnb)\n\nDocumented commands (type help <topic>):\n========================================\n\nEOF  help  quit\n\n(hbnb)'
