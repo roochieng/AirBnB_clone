@@ -30,7 +30,7 @@ The command interpreter also implements persistance storage to a database.
 > $ echo "help" | ./console.py
 > (hbnb)
 > 
-> Documented commands (type help <topic>):
-========================================
+> Documented commands (type help <topic>)\:
+> ========================================
 > EOF  help  quit
 > (hbnb)
