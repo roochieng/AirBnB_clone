@@ -31,7 +31,6 @@ The command interpreter also implements persistance storage to a database.
 > (hbnb)
 > 
 > Documented commands (type help <topic>):
->
-> '========================================'
+========================================
 > EOF  help  quit
 > (hbnb)
