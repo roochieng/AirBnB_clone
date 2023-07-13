@@ -25,16 +25,12 @@ The command interpreter also implements persistance storage to a database.
 - Type help to see options on how to use it.
 
 ## Examples
-'''
-$ ./console.py
-(hbnb) help
 
-Documented commands (type help <topic>):
-========================================
-EOF  help  quit
 
-(hbnb) 
-(hbnb) 
-(hbnb) quit
-$
-'''
+> $ echo "help" | ./console.py
+> (hbnb)
+> 
+> Documented commands (type help <topic>):
+> ========================================
+> EOF  help  quit
+> (hbnb)
