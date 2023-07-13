@@ -13,7 +13,7 @@ When done, we should have a complete web application compsed by:
 
 
 ## Description of the command interpreter:
-It starts with a command interpreter which can be used to manipulate data without visual interface. The command interface is perfect for deplayment and debugging.
+The project starts with a command interpreter which can be used to manipulate data without visual interface. The command interface is perfect for deplayment and debugging.
 The command interpreter also implements persistance storage to a database.
 
 
@@ -31,6 +31,7 @@ The command interpreter also implements persistance storage to a database.
 > (hbnb)
 > 
 > 'Documented commands (type help <topic>):'
+
 > '========================================'
 > EOF  help  quit
 > (hbnb)
