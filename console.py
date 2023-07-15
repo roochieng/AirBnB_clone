@@ -5,7 +5,7 @@ Define the AirBnB console
 
 import cmd
 import re
-from models.engine.file_storage import FileStorage
+from models import storage
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -65,12 +65,12 @@ class HBNBCommand(cmd.Cmd):
         }
         match = re.search(r"\.", arg)
         if match is not None:
-            argl = [arg[:match.span()[0]], arg[match.span()[1]:]]
-            match = re.search(r"\((.*?)\)", argl[1])
+            args = [arg[:match.span()[0]], arg[match.span()[1]:]]
+            match = re.search(r"\((.*?)\)", args[1])
             if match is not None:
-                command = [argl[1][:match.span()[0]], match.group()[1:-1]]
+                command = [args[1][:match.span()[0]], match.group()[1:-1]]
                 if command[0] in argdict.keys():
-                    call = f"{args[0]} {commad[1]}"
+                    call = f"{args[0]} {command[1]}"
                     return argdict[command[0]](call)
         print(f"*** Unknown syntax: {arg}")
         return False
@@ -95,14 +95,14 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             print(eval(argl[0])().id)
-            FileStorage.save()
+            storage.save()
 
     def do_show(self, arg):
         """Usage: show <class> <id> or <class>.show(<id>)
         Display the string representation of a class instance of a given id.
         """
         argl = parser(arg)
-        objdict = FileStorage.all()
+        objdict = storage.all()
         if len(argl) == 0:
             print("** class name missing **")
         elif argl[0] not in HBNBCommand.our_instances:
@@ -118,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
         """Usage: destroy <class> <id> or <class>.destroy(<id>)
         Delete a class instance of a given id."""
         argl = parser(arg)
-        objdict = FileStorage.all()
+        objdict = storage.all()
         if len(argl) == 0:
             print("** class name missing **")
         elif argl[0] not in HBNBCommand.our_instances:
@@ -129,7 +129,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
         else:
             del objdict["{}.{}".format(argl[0], argl[1])]
-            FileStorage.save()
+            storage.save()
 
     def do_all(self, arg):
         """Usage: all or all <class> or <class>.all()
@@ -140,7 +140,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             objl = []
-            for obj in FileStorage.all().values():
+            for obj in storage.all().values():
                 if len(args) > 0 and args[0] == obj.__class__.__name__:
                     objl.append(obj.__str__())
                 elif len(args) == 0:
@@ -152,7 +152,7 @@ class HBNBCommand(cmd.Cmd):
         Retrieve the number of instances of a given class."""
         args = parser(arg)
         count = 0
-        for obj in FileStorage.all().values():
+        for obj in storage.all().values():
             if args[0] == obj.__class__.__name__:
                 count += 1
         print(count)
@@ -204,7 +204,7 @@ class HBNBCommand(cmd.Cmd):
                     obj.__dict__[k] = valtype(v)
                 else:
                     obj.__dict__[k] = v
-        FileStorage.save()
+        storage.save()
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
