@@ -15,6 +15,7 @@ from models.amenity import Amenity
 from models.review import Review
 from shlex import split
 
+
 def parser(arg):
     curly_braces = re.search(r"\{(.*?)\}", arg)
     brackets = re.search(r"\[(.*?)\]", arg)
@@ -31,6 +32,7 @@ def parser(arg):
         retl = [i.strip(",") for i in lexer]
         retl.append(curly_braces.group())
         return retl
+
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -205,6 +207,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     obj.__dict__[k] = v
         storage.save()
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
