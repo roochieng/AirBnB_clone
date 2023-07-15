@@ -5,7 +5,7 @@ Define the AirBnB console
 
 import cmd
 import re
-from models import storage
+from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -37,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
     Defines the HBNB command insterpreter
     """
     promt = "(hbnb)"
-    our_instances {
+    our_instances = {
         "BaseModel",
         "User",
         "State",
@@ -70,7 +70,7 @@ class HBNBCommand(cmd.Cmd):
             if match is not None:
                 command = [argl[1][:match.span()[0]], match.group()[1:-1]]
                 if command[0] in argdict.keys():
-                    call = "{argl[0]} {commad[1]}")
+                    call = f"{args[0]} {commad[1]}"
                     return argdict[command[0]](call)
         print(f"*** Unknown syntax: {arg}")
         return False
