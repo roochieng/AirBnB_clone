@@ -15,8 +15,6 @@ from models.amenity import Amenity
 from models.review import Review
 from shlex import split
 
-
-
 def parser(arg):
     curly_braces = re.search(r"\{(.*?)\}", arg)
     brackets = re.search(r"\[(.*?)\]", arg)
@@ -52,9 +50,12 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """If empty line, execute nothing."""
         pass
-    
+
     def default(self, arg):
-        """When input is invalid, show dict values, these are the valid objects"""
+        """
+        When input is invalid, show dict values,
+        these are the valid objects
+        """
         argdict = {
             "all": self.do_all,
             "show": self.do_show,
@@ -204,7 +205,6 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     obj.__dict__[k] = v
         storage.save()
-
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
