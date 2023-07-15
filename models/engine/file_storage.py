@@ -14,13 +14,13 @@ class FileStorage:
     def all(self):
         """Returns __objects dictionary."""
         # TODO: should this be a copy()?
-        return FileStorage.__objects
+        return storage.__objects
 
     def new(self, obj):
         """Sets new obj in __objects dictionary."""
         # TODO: should these be more precise specifiers?
         key = "{}.{}".format(type(obj).__name__, obj.id)
-        FileStorage.__objects[key] = obj
+        storage.__objects[key] = obj
 
     def save(self):
         """Serialzes __objects to JSON file."""
