@@ -95,14 +95,14 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             print(eval(argl[0])().id)
-            storage.save()
+            FileStorage.save()
 
     def do_show(self, arg):
         """Usage: show <class> <id> or <class>.show(<id>)
         Display the string representation of a class instance of a given id.
         """
         argl = parser(arg)
-        objdict = storage.all()
+        objdict = FileStorage.all()
         if len(argl) == 0:
             print("** class name missing **")
         elif argl[0] not in HBNBCommand.our_instances:
@@ -118,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
         """Usage: destroy <class> <id> or <class>.destroy(<id>)
         Delete a class instance of a given id."""
         argl = parser(arg)
-        objdict = storage.all()
+        objdict = FileStorage.all()
         if len(argl) == 0:
             print("** class name missing **")
         elif argl[0] not in HBNBCommand.our_instances:
@@ -129,7 +129,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
         else:
             del objdict["{}.{}".format(argl[0], argl[1])]
-            storage.save()
+            FileStorage.save()
 
     def do_all(self, arg):
         """Usage: all or all <class> or <class>.all()
@@ -140,7 +140,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             objl = []
-            for obj in storage.all().values():
+            for obj in FileStorage.all().values():
                 if len(args) > 0 and args[0] == obj.__class__.__name__:
                     objl.append(obj.__str__())
                 elif len(args) == 0:
@@ -152,7 +152,7 @@ class HBNBCommand(cmd.Cmd):
         Retrieve the number of instances of a given class."""
         args = parser(arg)
         count = 0
-        for obj in storage.all().values():
+        for obj in FileStorage.all().values():
             if args[0] == obj.__class__.__name__:
                 count += 1
         print(count)
@@ -204,7 +204,7 @@ class HBNBCommand(cmd.Cmd):
                     obj.__dict__[k] = valtype(v)
                 else:
                     obj.__dict__[k] = v
-        storage.save()
+        FileStorage.save()
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
